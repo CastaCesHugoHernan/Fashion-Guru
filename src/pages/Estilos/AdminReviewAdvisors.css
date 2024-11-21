@@ -1,0 +1,102 @@
+/* Estilos para AdminReviewAdvisors */
+.admin-review-container {
+    padding: 20px;
+    background-color: #1b1b1b; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+  }
+  
+  h2 {
+    color: #00ffcc;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    text-align: center;
+    color: #ff66cc;
+    margin-bottom: 20px;
+  }
+  
+  /* Diseño de tarjetas para cada asesor */
+  .advisor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .advisor-card {
+    background-color: #2d2d2d; /* Fondo de la tarjeta */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: calc(33.33% - 20px); /* Tres tarjetas por fila */
+    min-width: 300px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .advisor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .advisor-card p {
+    margin: 10px 0;
+    color: #e0e0e0;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .approve-btn {
+    background-color: #00ffcc;
+    color: #1b1b1b;
+  }
+  
+  .approve-btn:hover {
+    background-color: #00cc99;
+  }
+  
+  .reject-btn {
+    background-color: #ff4d4d;
+    color: #1b1b1b;
+  }
+  
+  .reject-btn:hover {
+    background-color: #cc0000;
+  }
+  
+
+/* Estilo mejorado para el título */
+h2 {
+    color: #00ffcc; /* Neon */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Efecto de neón */
+  }
+  
+  /* Estilo mejorado para el mensaje de notificación */
+  .message {
+    text-align: center;
+    color: #ff66cc; /* Color para mensajes de éxito o error */
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 102, 204, 0.1); /* Fondo con un ligero toque del color del mensaje */
+    box-shadow: 0 0 5px rgba(255, 102, 204, 0.5); /* Sombra ligera */
+  }

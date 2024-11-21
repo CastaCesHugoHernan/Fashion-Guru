@@ -1,0 +1,68 @@
+/* General Styling for the Home Page */
+body {
+    background-color: #1b1b1b; /* Dark background */
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0; /* Light grey text for readability */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Neon effect for Titles */
+  h1, h2 {
+    color: #00ffcc; /* Neon green-blue for titles */
+    text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Styling for the login/register menu container */
+  .menu-container {
+    background-color: #2d2d2d; /* Dark grey for contrast */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  /* Styling for form elements */
+  input[type="text"], input[type="password"], input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333;
+    border: none;
+    color: #00ffcc;
+    border-bottom: 2px solid #00ffcc; /* Neon effect on input focus */
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    outline: none;
+    border-bottom: 2px solid #ff66cc; /* Shift to pink on focus */
+  }
+  
+  /* Button with neon effect */
+  button {
+    background-color: transparent;
+    border: 2px solid #00ffcc; /* Neon border */
+    color: #00ffcc;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 25px;
+    transition: 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #00ffcc; /* Neon fill on hover */
+    color: #1b1b1b;
+  }
+  
+  /* Footer Text */
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #666;
+  }
+  

@@ -1,0 +1,129 @@
+/* src/pages/Estilos/Community.css */
+
+/* Contenedor principal */
+.community-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #1b1b1b;
+  color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Formulario para nuevas publicaciones */
+.new-post-form {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #333;
+  color: #00ffcc;
+  border-bottom: 2px solid #00ffcc;
+  border-radius: 5px;
+}
+
+.file-upload {
+  display: block;
+  margin-top: 10px;
+}
+
+.post-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #00ffcc;
+  color: #1b1b1b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.post-button:hover {
+  background-color: #00cc99;
+}
+
+/* Publicaciones */
+.posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  background-color: #2d2d2d;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.post-user {
+  color: #00ffcc;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Sección de comentarios */
+.comment-section {
+  margin-top: 15px;
+}
+
+.comment-input {
+  width: 80%;
+  padding: 8px;
+  background-color: #333;
+  color: #00ffcc;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.comment-button {
+  padding: 5px 10px;
+  background-color: #00ffcc;
+  border: none;
+  color: #1b1b1b;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-button:hover {
+  background-color: #00cc99;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.comment-item {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* Botones de navegación y cierre de sesión en la esquina superior derecha */
+.top-right-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.top-right-buttons button {
+  background: none;
+  border: none;
+  color: #00ffcc; /* Color neón */
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.top-right-buttons button:hover {
+  color: #00cc99;
+}

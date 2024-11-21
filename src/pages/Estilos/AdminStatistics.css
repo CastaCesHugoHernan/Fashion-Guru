@@ -1,0 +1,61 @@
+/* Estilos generales para el componente de estadísticas del administrador */
+
+/* Fondo y tipografía */
+body {
+    background-color: #1b1b1b; /* Fondo oscuro */
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0; /* Texto claro */
+  }
+  
+  /* Título de las estadísticas */
+  h2 {
+    color: #00ffcc; /* Neon verde-azul para título */
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc; /* Efecto neon */
+  }
+  
+  /* Lista de estadísticas */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 30px auto;
+    width: 50%; /* Ajusta el ancho para centrar */
+    text-align: left;
+  }
+  
+  /* Elementos de estadísticas */
+  li {
+    background-color: #333; /* Fondo oscuro para cada ítem */
+    color: #00ffcc; /* Texto en verde neon */
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Efecto hover para los elementos */
+  li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+  }
+  
+  /* Mensaje de error */
+  .message {
+    color: #ff6666; /* Color rojo para mensajes de error */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(255, 102, 102, 0.1); /* Fondo translúcido */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 102, 102, 0.5);
+  }
+  

@@ -1,0 +1,64 @@
+/* General container styling for registration page */
+.register-container {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    padding: 30px;
+    max-width: 400px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Form styling */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-form label {
+    margin-bottom: 15px;
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"],
+  .register-form select {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    color: #00ffcc;
+    border-bottom: 2px solid #00ffcc;
+  }
+  
+  .register-form input[type="text"]:focus,
+  .register-form input[type="email"]:focus,
+  .register-form input[type="password"]:focus,
+  .register-form select:focus {
+    outline: none;
+    border-bottom: 2px solid #ff66cc;
+  }
+  
+  /* Button styling */
+  .register-form button {
+    background-color: #00ffcc;
+    border: none;
+    color: #1b1b1b;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .register-form button:hover {
+    background-color: #00cc99;
+  }
+  
+  /* Message styling */
+  p {
+    color: #05f5b9;
+    margin-top: 20px;
+  }
+  

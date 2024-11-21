@@ -1,0 +1,37 @@
+/* src/pages/Estilos/UserChats.css */
+.chat-container {
+    padding: 20px;
+    color: #e0e0e0;
+  }
+  
+  .chat-section {
+    margin-top: 20px;
+  }
+  
+  .chat-room-item {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chat-button {
+    background-color: #00ffcc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #1b1b1b;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .chat-button:hover {
+    background-color: #ff66cc;
+  }
+  

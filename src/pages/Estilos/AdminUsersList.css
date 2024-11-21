@@ -1,0 +1,66 @@
+/* Estilos generales para la lista de usuarios registrados */
+
+/* Fondo y tipografía */
+body {
+    background-color: #1b1b1b; /* Fondo oscuro */
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0; /* Texto claro */
+  }
+  
+  /* Título */
+  h2 {
+    color: #00ffcc; /* Neon verde-azul */
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc;
+  }
+  
+  /* Estilos para la lista de usuarios */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 30px auto;
+    width: 50%;
+    text-align: left;
+  }
+  
+  /* Estilos para cada usuario */
+  li {
+    background-color: #2d2d2d; /* Fondo oscuro */
+    color: #00ffcc;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Efecto hover para cada usuario */
+  li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+  }
+  
+  /* Estilo para cada detalle de usuario */
+  p {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  
+  /* Mensaje de error */
+  .message {
+    color: #ff6666; /* Color rojo para mensajes de error */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(255, 102, 102, 0.1); /* Fondo translúcido */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 102, 102, 0.5);
+  }
+  
