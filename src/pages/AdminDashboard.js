@@ -1,12 +1,61 @@
 // src/pages/AdminDashboard.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../config/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCheck, faChartLine, faUsers, faArrowLeft, faHome, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import './Estilos/AdminDashboard.css';
 
 function AdminDashboard() {
   const navigate = useNavigate();
+  const [userCount, setUserCount] = useState(0);
+  const [pendingAdvisors, setPendingAdvisors] = useState(0);
+  const [pendingAppointments, setPendingAppointments] = useState(0);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        // Contar usuarios registrados
+        const { count: userCount, error: userError } = await supabase
+          .from('users')
+          .select('*', { count: 'exact', head: true });
+
+        if (userError) {
+          console.error('Error al obtener el conteo de usuarios:', userError.message);
+        } else {
+          setUserCount(userCount);
+        }
+
+        // Contar asesores pendientes
+        const { count: advisorCount, error: advisorError } = await supabase
+          .from('advisors')
+          .select('*', { count: 'exact', head: true })
+          .eq('approved', false);
+
+        if (advisorError) {
+          console.error('Error al obtener el conteo de asesores pendientes:', advisorError.message);
+        } else {
+          setPendingAdvisors(advisorCount);
+        }
+
+        // Contar solicitudes de asesoría pendientes
+        const { count: appointmentCount, error: appointmentError } = await supabase
+          .from('appointments')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'pending');
+
+        if (appointmentError) {
+          console.error('Error al obtener el conteo de solicitudes de asesoría:', appointmentError.message);
+        } else {
+          setPendingAppointments(appointmentCount);
+        }
+      } catch (error) {
+        console.error('Error al cargar estadísticas:', error.message);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -33,15 +82,15 @@ function AdminDashboard() {
       <div className="quick-stats">
         <div className="stats-card">
           <h3>Usuarios Registrados</h3>
-          <p>125</p> {/* Este número puede venir de tu base de datos */}
+          <p>{userCount}</p>
         </div>
         <div className="stats-card">
           <h3>Asesores Pendientes</h3>
-          <p>10</p> {/* Este número puede venir de tu base de datos */}
+          <p>{pendingAdvisors}</p>
         </div>
         <div className="stats-card">
           <h3>Solicitudes de Asesoría</h3>
-          <p>8</p> {/* Este número puede venir de tu base de datos */}
+          <p>{pendingAppointments}</p>
         </div>
       </div>
 
