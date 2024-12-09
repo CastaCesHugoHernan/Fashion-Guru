@@ -118,6 +118,15 @@ function AdminDashboard() {
             </button>
           </Link>
         </li>
+        
+        <li>
+          <Link to="/admin/activity-graph">
+            <button className="admin-btn">
+              <FontAwesomeIcon icon={faChartLine} /> Ver Gráficas
+            </button>
+          </Link>
+        </li>
+        
       </ul>
     </div>
   );

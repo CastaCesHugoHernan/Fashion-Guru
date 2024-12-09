@@ -15,7 +15,8 @@ import AdminReviewAdvisors from './pages/AdminReviewAdvisors';
 import AdminStatistics from './pages/AdminStatistics';
 import AdminUsersList from './pages/AdminUsersList';
 import Chat from './pages/Chat';
-import UserChats from './pages/UserChats'; // Importa el nuevo componente de Chats
+import UserChats from './pages/UserChats';
+import ActivityGraph from './pages/ActivityGraph'; // Importa el componente de la nueva página
 
 // Componente para proteger las rutas (Solo permite el acceso si es administrador)
 const ProtectedRoute = ({ children, redirectTo }) => {
@@ -38,7 +39,7 @@ function App() {
           <Route path="/user/community" element={<Community />} />
 
           {/* Ruta para el chat con asesores */}
-          <Route path="/user/chats" element={<UserChats />} /> {/* Nueva ruta para el chat */}
+          <Route path="/user/chats" element={<UserChats />} />
 
           {/* Ruta para el chat dentro de una sala específica */}
           <Route path="/chat/room/:chatRoomId" element={<Chat />} />
@@ -66,6 +67,11 @@ function App() {
           <Route path="/admin/users" element={
             <ProtectedRoute redirectTo="/login">
               <AdminUsersList />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/activity-graph" element={ // Nueva ruta protegida para las gráficas
+            <ProtectedRoute redirectTo="/login">
+              <ActivityGraph />
             </ProtectedRoute>
           } />
         </Routes>
