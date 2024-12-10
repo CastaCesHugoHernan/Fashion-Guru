@@ -48,16 +48,19 @@ function ScheduleAppointment() {
     setTime(selectedTime);
 
     if (selectedAdvisor && date) {
-      const { data, error } = await supabase
-        .from('appointments')
-        .select('time')
-        .eq('advisor_id', selectedAdvisor.id)
-        .eq('date', date)
-        .eq('status', 'confirmed');
+      try {
+        const { data, error } = await supabase
+          .from('appointments')
+          .select('time')
+          .eq('advisor_id', selectedAdvisor.id)
+          .eq('date', date)
+          .eq('status', 'confirmed');
 
-      if (error) {
-        setMessage(`Error al verificar disponibilidad: ${error.message}`);
-      } else {
+        if (error) {
+          console.warn('Error al verificar disponibilidad:', error.message); // Mostrar en consola
+          return;
+        }
+
         const occupiedTimes = data.map((appointment) => appointment.time);
         if (occupiedTimes.includes(selectedTime)) {
           setMessage('El asesor ya tiene una cita en esa hora. Elige otra hora.');
@@ -65,6 +68,8 @@ function ScheduleAppointment() {
         } else {
           setMessage('');
         }
+      } catch (err) {
+        console.error('Error inesperado al verificar disponibilidad:', err.message);
       }
     }
   };

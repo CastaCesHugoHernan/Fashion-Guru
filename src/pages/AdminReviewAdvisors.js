@@ -1,11 +1,15 @@
 // src/pages/AdminReviewAdvisors.js
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './Estilos/AdminReviewAdvisors.css'; // Importar estilos
 
 function AdminReviewAdvisors() {
   const [advisorRequests, setAdvisorRequests] = useState([]);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAdvisorRequests = async () => {
@@ -34,7 +38,7 @@ function AdminReviewAdvisors() {
       setMessage(`Error al aprobar asesor: ${error.message}`);
     } else {
       setMessage('Asesor aprobado exitosamente');
-      setAdvisorRequests(advisorRequests.filter(advisor => advisor.id !== id)); // Remover asesor aprobado
+      setAdvisorRequests(advisorRequests.filter((advisor) => advisor.id !== id)); // Remover asesor aprobado
     }
   };
 
@@ -48,24 +52,43 @@ function AdminReviewAdvisors() {
       setMessage(`Error al rechazar asesor: ${error.message}`);
     } else {
       setMessage('Asesor rechazado exitosamente');
-      setAdvisorRequests(advisorRequests.filter(advisor => advisor.id !== id)); // Remover asesor rechazado
+      setAdvisorRequests(advisorRequests.filter((advisor) => advisor.id !== id)); // Remover asesor rechazado
     }
   };
 
   return (
     <div className="admin-review-container">
+      {/* Botón Atrás */}
+      <div className="activity-graph-container">
+        <button onClick={() => navigate(-1)} className="back-btn">
+          <FontAwesomeIcon icon={faArrowLeft} /> Atrás
+        </button>
+      </div>
+
       <h2>Revisión de Solicitudes de Asesores</h2>
       {message && <p className="message">{message}</p>}
       <div className="advisor-cards">
         {advisorRequests.map((advisor) => (
           <div key={advisor.id} className="advisor-card">
-            <p><strong>Nombre:</strong> {advisor.name}</p>
-            <p><strong>Email:</strong> {advisor.email}</p>
-            <p><strong>Especialización:</strong> {advisor.specialization}</p>
-            <p><strong>Certificación:</strong> {advisor.certification}</p>
+            <p>
+              <strong>Nombre:</strong> {advisor.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {advisor.email}
+            </p>
+            <p>
+              <strong>Especialización:</strong> {advisor.specialization}
+            </p>
+            <p>
+              <strong>Certificación:</strong> {advisor.certification}
+            </p>
             <div className="button-group">
-              <button className="approve-btn" onClick={() => handleApprove(advisor.id)}>Aprobar</button>
-              <button className="reject-btn" onClick={() => handleReject(advisor.id)}>Rechazar</button>
+              <button className="approve-btn" onClick={() => handleApprove(advisor.id)}>
+                Aprobar
+              </button>
+              <button className="reject-btn" onClick={() => handleReject(advisor.id)}>
+                Rechazar
+              </button>
             </div>
           </div>
         ))}

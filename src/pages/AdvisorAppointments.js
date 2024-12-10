@@ -1,11 +1,15 @@
 // src/pages/AdvisorAppointments.js
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faHome } from '@fortawesome/free-solid-svg-icons';
 
 function AdvisorAppointments() {
   const [pendingAppointments, setPendingAppointments] = useState([]);
   const [completedAppointments, setCompletedAppointments] = useState([]);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   // Obtener citas del asesor
   useEffect(() => {
@@ -25,8 +29,10 @@ function AdvisorAppointments() {
       if (error) {
         setMessage(`Error: ${error.message}`);
       } else {
-        const pending = data.filter(app => app.status === 'pending');
-        const completed = data.filter(app => app.status === 'accepted' || app.status === 'rejected');
+        const pending = data.filter((app) => app.status === 'pending');
+        const completed = data.filter(
+          (app) => app.status === 'accepted' || app.status === 'rejected'
+        );
         setPendingAppointments(pending);
         setCompletedAppointments(completed);
       }
@@ -37,7 +43,6 @@ function AdvisorAppointments() {
 
   // Crear sala de chat entre usuario y asesor
   const createChatRoom = async (appointmentId, userId, advisorId) => {
-    // Verificar si ya existe una sala de chat
     const { data: existingChatRoom, error: checkError } = await supabase
       .from('chat_rooms')
       .select('*')
@@ -50,7 +55,6 @@ function AdvisorAppointments() {
       return;
     }
 
-    // Crear una nueva sala de chat
     const { error: chatRoomError } = await supabase.from('chat_rooms').insert([
       {
         user_id: userId,
@@ -73,16 +77,14 @@ function AdvisorAppointments() {
         ? 'Tu asesoría fue aceptada.'
         : 'Tu asesoría fue rechazada.';
 
-    const { error } = await supabase
-      .from('notifications')
-      .insert([
-        {
-          user_id: userId,
-          advisor_id: advisorId,
-          type: 'appointment',
-          content: content,
-        },
-      ]);
+    const { error } = await supabase.from('notifications').insert([
+      {
+        user_id: userId,
+        advisor_id: advisorId,
+        type: 'appointment',
+        content: content,
+      },
+    ]);
 
     if (error) {
       console.error('Error al crear la notificación:', error.message);
@@ -92,7 +94,7 @@ function AdvisorAppointments() {
   };
 
   const handleStatusChange = async (appointmentId, newStatus, userId) => {
-    const advisorId = localStorage.getItem('advisor_id'); // Obtener el ID del asesor
+    const advisorId = localStorage.getItem('advisor_id');
 
     const { error } = await supabase
       .from('appointments')
@@ -103,20 +105,30 @@ function AdvisorAppointments() {
       setMessage(`Error al actualizar el estado: ${error.message}`);
     } else {
       setMessage('Estado de la cita actualizado');
-      setPendingAppointments(pendingAppointments.filter(app => app.id !== appointmentId));
+      setPendingAppointments(
+        pendingAppointments.filter((app) => app.id !== appointmentId)
+      );
 
-      // Si el estado es "accepted", crear la sala de chat
       if (newStatus === 'accepted') {
         await createChatRoom(appointmentId, userId, advisorId);
       }
 
-      // Crear la notificación para el usuario
       await createNotification(userId, advisorId, newStatus);
     }
   };
 
   return (
     <div>
+      {/* Botones de navegación */}
+      <div className="top-right-buttons">
+        <button onClick={() => navigate(-1)} title="Atrás">
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
+        <button onClick={() => navigate('/advisor/dashboard')} title="Home">
+          <FontAwesomeIcon icon={faHome} />
+        </button>
+      </div>
+
       <h2>Gestión de Citas Pendientes</h2>
       {message && <p>{message}</p>}
       <ul>
@@ -125,8 +137,20 @@ function AdvisorAppointments() {
             <p>Usuario: {appointment.users.name}</p>
             <p>Fecha: {appointment.date}</p>
             <p>Hora: {appointment.time}</p>
-            <button onClick={() => handleStatusChange(appointment.id, 'accepted', appointment.user_id)}>Aceptar</button>
-            <button onClick={() => handleStatusChange(appointment.id, 'rejected', appointment.user_id)}>Rechazar</button>
+            <button
+              onClick={() =>
+                handleStatusChange(appointment.id, 'accepted', appointment.user_id)
+              }
+            >
+              Aceptar
+            </button>
+            <button
+              onClick={() =>
+                handleStatusChange(appointment.id, 'rejected', appointment.user_id)
+              }
+            >
+              Rechazar
+            </button>
           </li>
         ))}
       </ul>

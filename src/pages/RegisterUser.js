@@ -14,27 +14,39 @@ function RegisterUser() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (role === 'user') {
-      const { error: userError } = await supabase.from('users').insert([
-        { name, email, password, role }
-      ]);
+    try {
+      if (role === 'user') {
+        const { error: userError } = await supabase.from('users').insert([
+          { name, email, password, role }
+        ]);
 
-      if (userError) {
-        setMessage(`Error: ${userError.message}`);
-        return;
-      }
-    } else if (role === 'advisor') {
-      const { error: advisorError } = await supabase.from('advisors').insert([
-        { name, email, password, specialization, certification, approved: false } // Asegurar que el estado 'approved' sea falso
-      ]);
+        if (userError) {
+          if (userError.code === '23505') {
+            setMessage('El correo electrónico ya está registrado. Por favor, intenta con otro.');
+          } else {
+            setMessage(`Error: ${userError.message}`);
+          }
+          return;
+        }
+      } else if (role === 'advisor') {
+        const { error: advisorError } = await supabase.from('advisors').insert([
+          { name, email, password, specialization, certification, approved: false }
+        ]);
 
-      if (advisorError) {
-        setMessage(`Error al registrar al asesor: ${advisorError.message}`);
-        return;
+        if (advisorError) {
+          if (advisorError.code === '23505') {
+            setMessage('El correo electrónico ya está registrado. Por favor, intenta con otro.');
+          } else {
+            setMessage(`Error al registrar al asesor: ${advisorError.message}`);
+          }
+          return;
+        }
       }
+
+      setMessage('Usuario registrado exitosamente');
+    } catch (error) {
+      setMessage(`Error inesperado: ${error.message}`);
     }
-
-    setMessage('Usuario registrado exitosamente');
   };
 
   return (

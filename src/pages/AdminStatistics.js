@@ -1,5 +1,9 @@
+// src/pages/AdminStatistics.js
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './Estilos/AdminStatistics.css'; // Importar los nuevos estilos
 
 function AdminStatistics() {
@@ -10,6 +14,7 @@ function AdminStatistics() {
     totalPosts: 0,
   });
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStatistics = async () => {
@@ -46,7 +51,14 @@ function AdminStatistics() {
   }, []);
 
   return (
-    <div>
+    <div className="admin-statistics-container">
+      {/* Botón Atrás */}
+      <div className="activity-graph-container">
+        <button onClick={() => navigate(-1)} className="back-btn">
+          <FontAwesomeIcon icon={faArrowLeft} /> Atrás
+        </button>
+      </div>
+
       <h2>Estadísticas del Sitio</h2>
       {message && <p className="message">{message}</p>}
       <ul>

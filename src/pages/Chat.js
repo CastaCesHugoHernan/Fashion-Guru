@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient';
 import './Chat.css'; // Asegúrate de tener este archivo para los estilos
 
 function Chat() {
   const { chatRoomId } = useParams(); // Obtener el ID de la sala de chat
+  const navigate = useNavigate(); // Hook para navegación
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const userId = localStorage.getItem('user_id'); // ID del usuario
@@ -105,6 +106,7 @@ function Chat() {
 
   return (
     <div className="chat-container">
+      <button className="back-button" onClick={() => navigate(-1)}>← Atrás</button>
       <h2>Chat</h2>
       {message && <p>{message}</p>}
 

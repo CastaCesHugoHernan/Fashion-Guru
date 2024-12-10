@@ -1,6 +1,6 @@
 // src/pages/UserChats.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient';
 import './Estilos/UserChats.css'; // Archivo CSS específico para esta sección
 
@@ -8,6 +8,7 @@ function UserChats() {
   const [chatRooms, setChatRooms] = useState([]);
   const [message, setMessage] = useState('');
   const userId = localStorage.getItem('user_id');
+  const navigate = useNavigate(); // Hook para navegar
 
   useEffect(() => {
     const fetchChatRooms = async () => {
@@ -34,6 +35,9 @@ function UserChats() {
 
   return (
     <div className="chat-container">
+      <div className="top-buttons">
+        <button onClick={() => navigate(-1)} className="back-button">Atrás</button>
+      </div>
       <h1>Chats con Asesores</h1>
       {message && <p>{message}</p>}
       <section className="chat-section">
@@ -59,4 +63,3 @@ function UserChats() {
 }
 
 export default UserChats;
-    
